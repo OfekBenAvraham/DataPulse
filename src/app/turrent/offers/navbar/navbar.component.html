@@ -1,9 +1,10 @@
 <nav class="navbar">
     <ul>
-      <li (click)="selectCategory('movies')" [class.active]="selectedCategory === 'movies'">Movies</li>
-      <li (click)="selectCategory('tvshows')" [class.active]="selectedCategory === 'tvshows'">TV Shows</li>
-      <li (click)="selectCategory('games')" [class.active]="selectedCategory === 'games'">Games</li>
-      <li (click)="selectCategory('programs')" [class.active]="selectedCategory === 'programs'">Programs</li>
+      <li *ngFor="let category of categories"
+          (click)="selectCategory(category)"
+          [class.active]="selectedCategory === category">
+        {{ category | titlecase }}
+      </li>
     </ul>
   </nav>
   
