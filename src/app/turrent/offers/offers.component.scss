@@ -1,0 +1,46 @@
+.offers-wrapper {
+    padding-top: 5rem;
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .card {
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+    transition: transform 0.3s;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    h3 {
+      margin: 1rem 0;
+    }
+
+    .download-btn {
+      background-color: #e74c3c;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

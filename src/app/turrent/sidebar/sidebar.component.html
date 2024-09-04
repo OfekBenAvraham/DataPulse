@@ -1,0 +1,16 @@
+<div class="sidebar-wrapper">
+    <h1>Data Pulse</h1>
+
+    <div class="options">
+        <ul>
+            <li [class.active]="isActive('turrents')">
+                <a *ngIf="!isActive('turrents'); else activeTurrents" [routerLink]="['/turrent/turrents']">Turrents</a>
+                <ng-template #activeTurrents><span>Torrents</span></ng-template>
+            </li>
+            <li [class.active]="isActive('offers')">
+                <a *ngIf="!isActive('offers'); else activeOffers" [routerLink]="['/turrent/offers']">Offers</a>
+                <ng-template #activeOffers><span>Offers</span></ng-template>
+            </li>
+        </ul>
+    </div>
+</div>

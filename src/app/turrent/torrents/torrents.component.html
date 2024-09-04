@@ -1,0 +1,34 @@
+<div class="table-wrapper">
+  <p-table
+    #dt
+    dir="ltr"
+    [scrollable]="true"
+    scrollHight="65vh"
+    [value]="turrents()"
+    [showCurrentPageReport]="totalItems() ? true : false"
+    [rows]="rowsPerPage()"
+    [totalRecords]="totalItems()"
+    [showCurrentPageReport]="totalItems() ? true : false"
+    [paginator]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th>Size</th>
+        <th>Speed</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-turrent>
+      <tr>
+        <td>{{ turrent.name }}</td>
+        <td>{{ turrent.size }}</td>
+        <td>{{ turrent.speed }}</td>
+        <td><p-progressBar [value]="calculateProgress(turrent)"></p-progressBar></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

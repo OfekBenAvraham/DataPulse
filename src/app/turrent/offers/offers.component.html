@@ -1,0 +1,14 @@
+<div class="offers-wrapper">
+    <app-navbar (categorySelected)="onCategorySelected($event)"></app-navbar>
+  
+    <div class="cards-container">
+      @for (item of filteredItems(); track item.title) {
+        <div class="card">
+          <img [src]="item.image" alt="{{ item.title }}" />
+          <h3>{{ item.title }}</h3>
+          <button class="download-btn">Download</button>
+        </div>
+      }
+    </div>
+  </div>
+  
