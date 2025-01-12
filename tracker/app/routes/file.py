@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Body, Depends
-from app.models.file import FileModel
+from app.models.file import FileModel, FileCheckRequest
 from app.database.connection import peer_collection, file_collection
 from app.utils.auth import get_current_peer
 
@@ -9,27 +9,28 @@ router = APIRouter()
 async def add_file(file_data: FileModel, current_peer=Depends(get_current_peer)):
     """
     Add a new file to the system.
-
+    name: str
+    type: str
+    total_chunks: int
     Input:
         file_data: {
-            "file_name": "example_video.mp4",
-            "chunks": [
-                { "order": 1, "peers": ["peer1@example.com"] },
-                { "order": 2, "peers": ["peer1@example.com"] }
-            ]
+            "name": "example_video"
+            "type": "mp4"
+            "total_chunks": 31,
         }
     Expected result:
         File is saved in the database.
     """
     # Check if the file already exists
-    existing_file = await file_collection.find_one({"file_id": file_data.file_id})
+    existing_file = await file_collection.find_one({"name": file_data.name, "type": file_data.type})
     if existing_file:
         raise HTTPException(status_code=400, detail="File already exists")
 
     chunks = [{"order": i, "peers": [current_peer["email"]]} for i in range(file_data.total_chunks)]
     new_file = {
-        "file_name": file_data.file_name,
+        "file_name": file_data.name,
         "total_chunks": file_data.total_chunks,
+        "type": file_data.type,
         "chunks": chunks
     }
     # Save the file
@@ -77,16 +78,16 @@ async def get_peers(data: dict = Body(...), current_peer=Depends(get_current_pee
 
     Input:
         {
-            "file_name": "file123",
+            "name": "file123",
             "chunks": Optional[List[int]]
         }
     Output:
         List of peers owning the requested chunks.
     """
-    file_name = data["file_name"]
+    file_name = data["name"]
     requested_chunks = data.get("chunks", None)
 
-    file = await file_collection.find_one({"file_name": file_name})
+    file = await file_collection.find_one({"name": file_name})
     if not file:
         raise HTTPException(status_code=404, detail="File not found")
 
@@ -106,3 +107,24 @@ async def get_peers(data: dict = Body(...), current_peer=Depends(get_current_pee
         result.append({"chunk": chunk_data["order"], "peers": valid_peers})
 
     return {"peers": result}
+
+
+@router.post("/check_file")
+async def check_existing_file(file_data: FileCheckRequest):
+    """
+    Check if a file already exists by name and type.
+
+    Input:
+        name: str - The name of the file.
+        type: str - The type of the file.
+    Output:
+        exist: bool - True if the file exists, False otherwise.
+    """
+    # Query the database for a file with the given name and type
+    existing_file = await file_collection.find_one({
+        "name": file_data.name,
+        "type": file_data.type
+    })
+
+    # Return the existence status
+    return {"exist": bool(existing_file)}

@@ -6,5 +6,10 @@ class Chunk(BaseModel):
     peers: List[str]  # List of emails of peers that own this chunk
 
 class FileModel(BaseModel):
-    file_name: str
+    name: str
+    type: str
     total_chunks: int
+
+class FileCheckRequest(BaseModel):
+    name: str
+    type: str
