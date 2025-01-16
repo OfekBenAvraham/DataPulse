@@ -12,7 +12,7 @@ def check_file_with_server(file_name, file_type, tracker_url="http://yourserver.
     try:
         response = requests.post(tracker_url, json=payload)
         server_response = response.json()
-        return server_response.get("exist", False)  # מחזיר True אם קובץ קיים, אחרת False
+        return server_response.get("exist", False)
     except requests.RequestException as e:
         print(f"Error communicating with server: {e}")
         return False
@@ -75,15 +75,13 @@ def create_torrent(file_path, metadata, save_directory):
     # Create a .torrent file based on the metadata
     tracker_url = "http://trackeraddress.com/announce"
     file_type = get_file_type(file_path)
-
-    # Prepare the torrent dictionary
     torrent_info = {
         'announce': tracker_url,
         'info': {
             'name': os.path.basename(file_path),
             'type': file_type,
-            'pieces': b''.join([bytes.fromhex(chunk['hash']) for chunk in metadata]),  # concatenate all chunk hashes
-            'files': [{'length': chunk['size'], 'path': [chunk['chunk_name']]} for chunk in metadata],  # Path of each chunk
+            'pieces': b''.join([bytes.fromhex(chunk['hash']) for chunk in metadata]),
+            'files': [{'length': chunk['size'], 'path': [chunk['chunk_name']]} for chunk in metadata],
             'total_chunks': int(round((sum([chunk['size'] for chunk in metadata]))/(20 * 1024 * 1024))),
         }
     }
