@@ -11,7 +11,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class NavbarComponent {
   @Output() categorySelected = new EventEmitter<string>();
 
-  categories = ['movies', 'tvshows', 'games', 'programs'];
+  categories = ['movies', 'games', 'programs', 'more'];
   selectedCategory = 'movies';
 
   selectCategory(category: string) {

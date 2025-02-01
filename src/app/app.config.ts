@@ -4,6 +4,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import routes from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { provideToastr } from 'ngx-toastr';
 
 
 export const appConfig: ApplicationConfig = {
@@ -11,11 +13,12 @@ export const appConfig: ApplicationConfig = {
     
     // provide http Client
     provideAnimations(),
-
     provideRouter(routes),
     provideHttpClient(),
-
-    // primeng dialog
+    provideToastr(),
+    
+    // primeng 
+    MessageService,
     DialogService,
 
   ],

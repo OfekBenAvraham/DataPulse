@@ -17,7 +17,7 @@
           Name <p-sortIcon field="name"></p-sortIcon>
         </th>
         <th>Size</th>
-        <th>Speed</th>
+        <th>Type</th>
         <th>Status</th>
       </tr>
     </ng-template>
@@ -26,7 +26,7 @@
       <tr>
         <td>{{ turrent.name }}</td>
         <td>{{ turrent.size }}</td>
-        <td>{{ turrent.speed }}</td>
+        <td>Download</td>
         <td><p-progressBar [value]="calculateProgress(turrent)"></p-progressBar></td>
       </tr>
     </ng-template>

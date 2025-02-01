@@ -4,7 +4,7 @@
     <div class="options">
         <ul>
             <li [class.active]="isActive('turrents')">
-                <a *ngIf="!isActive('turrents'); else activeTurrents" [routerLink]="['/turrent/turrents']">Turrents</a>
+                <a *ngIf="!isActive('turrents'); else activeTurrents" [routerLink]="['/turrent/turrents']">Torrents</a>
                 <ng-template #activeTurrents><span>Torrents</span></ng-template>
             </li>
             <li [class.active]="isActive('offers')">

@@ -6,7 +6,7 @@ class PeerModel(BaseModel):
     ip: str
     port: int
     logged_in: bool
-    last_active: str
+    is_busy: bool
 
 class RegisterPeer(BaseModel):
     email: EmailStr
@@ -17,3 +17,11 @@ class RegisterPeer(BaseModel):
 class LoginPeer(BaseModel):
     email: EmailStr
     password: str
+    ip: str
+    port: int
+
+class UpdateBusyStatus(BaseModel):
+    email: EmailStr  # EmailStr is from Pydantic and ensures a valid email format
+    is_busy: bool
+    
+    

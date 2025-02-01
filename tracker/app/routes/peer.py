@@ -1,24 +1,15 @@
-from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr
-from app.database.connection import peer_collection
 from passlib.context import CryptContext
+from app.utils.auth import get_current_peer
 from app.utils.jwt import create_access_token
+from app.database.connection import peer_collection
+from fastapi import APIRouter, HTTPException, Depends
+from app.models.peer import RegisterPeer, LoginPeer, UpdateBusyStatus
+
 # Initialize router and password context
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Pydantic models for validation
-class RegisterPeer(BaseModel):
-    email: EmailStr
-    password: str
-    ip: str
-    port: int
-
-class LoginPeer(BaseModel):
-    email: EmailStr
-    password: str
-    ip: str
-    port: int
     
 
 @router.post("/register")
@@ -48,7 +39,8 @@ async def register_peer(peer_data: RegisterPeer):
         "password": hashed_password,
         "ip": peer_data.ip,
         "port": peer_data.port,
-        "logged_in": False, 
+        "logged_in": False,
+        "is_busy": False,
     }
     await peer_collection.insert_one(new_peer)
     return {"message": "Peer registered successfully"}
@@ -62,15 +54,18 @@ async def login_peer(login_data: LoginPeer):
     Input:
         email: the peer's email.
         password: the peer's password.
+        ip: the peer's ip.
+        port: the peer's port.
     Output:
         JWT and peer information.
     """
+    print("here")
     peer = await peer_collection.find_one({"email": login_data.email})
     if not peer or not pwd_context.verify(login_data.password, peer["password"]):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     # Mark peer as logged in
-    await peer_collection.update_one({"email": login_data.email}, {"$set": {"logged_in": True, "ip": login_data.ip, "port": login_data.port }})
+    await peer_collection.update_one({"email": login_data.email}, {"$set": {"logged_in": True, "ip": login_data.ip, "port": login_data.port , "is_busy": False }})
 
     # Generate JWT token
     token = create_access_token(data={"email": peer["email"]})
@@ -100,3 +95,25 @@ async def logout_peer(request: LogoutRequest):
     # Update logged_in status to False
     await peer_collection.update_one({"email": request.email}, {"$set": {"logged_in": False}})
     return {"message": "Logout successful"}
+
+@router.post("/update_status")
+async def update_busy_status(request: UpdateBusyStatus, current_peer=Depends(get_current_peer)):
+    """
+    Update the busy status of a peer.
+
+    Input:
+        request: {
+            "email": str - the user's email.
+            "is_busy": bool - the new busy status.
+        }
+    """
+    email = request.email
+    is_busy = request.is_busy
+    # Ensure the peer exists
+    peer = await peer_collection.find_one({"email": email})
+    if not peer:
+        raise HTTPException(status_code=404, detail="Peer not found")
+
+    # Update the is_busy status
+    await peer_collection.update_one({"email": email}, {"$set": {"is_busy": is_busy}})
+    return {"message": f"Peer {email} is now {'busy' if is_busy else 'not busy'}"}

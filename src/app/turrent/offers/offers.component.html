@@ -1,14 +1,72 @@
 <div class="offers-wrapper">
-    <app-navbar (categorySelected)="onCategorySelected($event)"></app-navbar>
-  
-    <div class="cards-container">
-      @for (item of filteredItems(); track item.title) {
-        <div class="card">
-          <img [src]="item.image" alt="{{ item.title }}" />
-          <h3>{{ item.title }}</h3>
-          <button class="download-btn">Download</button>
-        </div>
-      }
-    </div>
+  <div class="upload-button-container">
+    <input
+      #fileInput
+      type="file"
+      id="fileInput"
+      (change)="onFileSelected($event)"
+      hidden
+    />
+    <button
+      pButton
+      type="button"
+      label="Download File"
+      icon="pi pi-download"
+      class="p-button-primary"
+      (click)="fileInput.click()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Upload File"
+      icon="pi pi-upload"
+      class="p-button-primary"
+      (click)="openUploadDialog()"
+    ></button>
   </div>
-  
+  <!-- Upload Dialog -->
+  <p-dialog
+    header="Upload File"
+    [(visible)]="uploadDialogVisible"
+    [modal]="true"
+    [closable]="false"
+    [responsive]="true"
+    [style]="{ width: '30vw' }"
+  >
+    <div>
+      <label for="file-path">Enter Absolute File Path:</label>
+      <input
+        id="file-path"
+        type="text"
+        pInputText
+        [(ngModel)]="filePath"
+        placeholder="C:\\path\\to\\your\\file"
+      />
+    </div>
+    <div class="dialog-actions">
+      <button
+        pButton
+        label="Upload"
+        icon="pi pi-check"
+        (click)="uploadFile()"
+      ></button>
+      <button
+        pButton
+        label="Cancel"
+        icon="pi pi-times"
+        (click)="uploadDialogVisible.set(false)"
+      ></button>
+    </div>
+  </p-dialog>
+
+  <app-navbar (categorySelected)="onCategorySelected($event)"></app-navbar>
+
+  <div class="cards-container">
+    @for (item of filteredItems(); track item.title) {
+    <app-card
+      [item]="item"
+      (downloadClicked)="startToDownload(item)"
+    ></app-card>
+    }
+  </div>
+</div>

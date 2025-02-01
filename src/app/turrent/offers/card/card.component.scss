@@ -1,0 +1,70 @@
+.card {
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+  transition: transform 0.3s;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  h3 {
+    margin: 1rem 0;
+  }
+
+  .download-btn {
+    background-color: #e74c3c;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    width: 120px;
+    height: 40px;
+
+    &:hover {
+      background-color: #c0392b;
+    }
+
+    &:disabled {
+      background-color: #7f8c8d;
+      cursor: not-allowed;
+    }
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff;
+    border-top: 3px solid #e74c3c;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .checkmark {
+    font-size: 1.5rem;
+    color: #2ecc71; // Green color for success
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
