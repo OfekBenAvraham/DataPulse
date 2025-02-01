@@ -1,0 +1,4 @@
+cryptography==39.0.1
+pycryptodome
+bencodepy
+flask-socketio
