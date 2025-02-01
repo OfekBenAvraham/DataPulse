@@ -70,10 +70,15 @@ DataPulse is organized into three main branches, each handling a crucial part of
 
 ## ⚙️ How DataPulse Works
 1️⃣ **User Login & Authentication** 🔑 – Users log in via the UI, and authentication is handled via the Tracker.
+
 2️⃣ **File Discovery & Peer Selection** 📁 – The Tracker returns a list of peers that have the required file chunks.
+
 3️⃣ **Secure Key Exchange (RSA)** 🔐 – Before downloading, the client requests the peer's public key.
+
 4️⃣ **Chunked Parallel Download (Multi-Threading)** 🚀 – Simultaneous downloads from multiple peers.
+
 5️⃣ **File Merging & Verification** ✅ – Ensures integrity using **SHA-1 hash checks**.
+
 6️⃣ **Upload Handling** 📤 – Peers also serve files to others, updating their availability in real-time.
 
 ---
