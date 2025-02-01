@@ -1,4 +1,4 @@
-# DataPulse ![Project Logo](./assets/logo.png)  
+# ![Project Logo](./assets/logo.png)  
 
 
 _A next-gen distributed file-sharing platform powered by hybrid P2P and tracker-based architecture._
