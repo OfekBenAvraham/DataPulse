@@ -1,6 +1,6 @@
-# ![Project Logo](./assets/logo.png)  
+# DataPulse 🚀
 
-
+![Project Logo](./assets/logo.png)  
 _A next-gen distributed file-sharing platform powered by hybrid P2P and tracker-based architecture._
 
 ## 📌 Overview
@@ -34,6 +34,7 @@ DataPulse is organized into three main branches, each handling a crucial part of
 #### 📸 Screenshot:
 ![UI Preview](./assets/ui-preview-torrents.jpeg)
 ![UI Preview](./assets/ui-preview-offers.jpeg)
+
 ---
 
 ### 2️⃣ **client-backend (Backend for Client - Python)**
@@ -80,7 +81,18 @@ DataPulse is organized into three main branches, each handling a crucial part of
 
 ## 🛠 Running the Project
 
+### 🔧 Prerequisite
+First, clone the repository:
+```sh
+git clone https://github.com/OfekBenAvraham/DataPulse.git
+```
+Navigate to the appropriate branch based on the component you're running.
+
 ### 🛰 Tracker (Centralized Server)
+Switch to the `tracker` branch:
+```sh
+git checkout tracker
+```
 Run the tracker using FastAPI:
 ```sh
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
@@ -88,12 +100,20 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 This starts the Tracker API on **port 8000**.
 
 ### 🔙 Client Backend (Python)
+Switch to the `client-backend` branch:
+```sh
+git checkout client-backend
+```
 Run the backend that communicates with both the UI and the Tracker:
 ```sh
 python main.py
 ```
 
 ### 🎨 Frontend (Angular UI)
+Switch to the `main` branch:
+```sh
+git checkout main
+```
 Run the UI for users to interact with:
 ```sh
 npm install
@@ -115,6 +135,10 @@ We welcome contributions! Feel free to fork the project, submit pull requests, a
 
 ---
 
+## 📜 License
+DataPulse is open-source and licensed under the **MIT License**.
+
+---
 
 📧 For questions or collaboration, reach out to [Ofek Ben Avraham](mailto:benavrahamofek@gmail.com) or to [Rotem Porat](mailto:rotem1591@gmail.com).
 
