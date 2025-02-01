@@ -4,7 +4,7 @@
 _A next-gen distributed file-sharing platform powered by hybrid P2P and tracker-based architecture._
 
 ## 📌 Overview
-DataPulse enables users to efficiently share and download files using a hybrid **peer-to-peer (P2P) and tracker-based architecture**.
+DataPulse enables users to efficiently share and download files using a hybrid **peer-to-peer (P2P) and tracker-based architecture**. 
 With **end-to-end encryption (RSA & AES)**, **multi-threaded downloads**, and a **real-time tracker**, DataPulse ensures a **fast, secure, and scalable** file-sharing experience.
 
 ---
@@ -17,6 +17,7 @@ With **end-to-end encryption (RSA & AES)**, **multi-threaded downloads**, and a 
 ✅ **Flask Backend** – Handles user authentication, file uploads, and downloads.  
 ✅ **MongoDB Database** – Stores peer and file metadata.  
 ✅ **Real-Time Peer Updates** – Prevents busy peers from being selected for downloads.  
+✅ **Netflix-Like Offers Component** – Users can browse and download files categorized as **Movies**, **Games**, **Programs**, and more through an intuitive interface.
 
 ---
 
@@ -24,19 +25,19 @@ With **end-to-end encryption (RSA & AES)**, **multi-threaded downloads**, and a 
 DataPulse is organized into three main branches, each handling a crucial part of the system:
 
 ### 1️⃣ **Main (Frontend - Angular)**
-🏗 **The UI of DataPulse**, built with Angular, provides an intuitive interface for users to browse, search, and manage downloads.
+🏗 **The UI of DataPulse**, built with Angular, provides an intuitive interface for users to browse, search, and manage downloads. 
 #### 🔧 Technologies:
 - Angular 17 for frontend development
 - Tailwind CSS for styling
 - TypeScript for frontend logic
 
 #### 📸 Screenshot:
-![UI Preview](./assets/ui-preview.png)
-
+![UI Preview](./assets/ui-preview-torrents.jpeg)
+![UI Preview](./assets/ui-preview-offers.jpeg)
 ---
 
 ### 2️⃣ **client-backend (Backend for Client - Python)**
-💻 **Handles backend logic for the UI and communication with the Tracker.**
+💻 **Handles backend logic for the UI and communication with the Tracker.** 
 
 #### 🔧 Technologies:
 - Flask for API endpoints
