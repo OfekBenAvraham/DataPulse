@@ -28,7 +28,6 @@ DataPulse is organized into three main branches, each handling a crucial part of
 🏗 **The UI of DataPulse**, built with Angular, provides an intuitive interface for users to browse, search, and manage downloads. 
 #### 🔧 Technologies:
 - Angular 17 for frontend development
-- Tailwind CSS for styling
 - TypeScript for frontend logic
 
 #### 📸 Screenshot:
