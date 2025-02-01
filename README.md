@@ -1,6 +1,6 @@
-# DataPulse 🚀
+# DataPulse ![Project Logo](./assets/logo.png)  
 
-![Project Logo](./assets/logo.png)  
+
 _A next-gen distributed file-sharing platform powered by hybrid P2P and tracker-based architecture._
 
 ## 📌 Overview
@@ -115,10 +115,6 @@ We welcome contributions! Feel free to fork the project, submit pull requests, a
 
 ---
 
-## 📜 License
-DataPulse is open-source and licensed under the **MIT License**.
 
----
-
-📧 For questions or collaboration, reach out to [Ofek Ben Avraham](mailto:your-email@example.com).
+📧 For questions or collaboration, reach out to [Ofek Ben Avraham](mailto:benavrahamofek@gmail.com) or to [Rotem Porat](mailto:rotem1591@gmail.com).
 
