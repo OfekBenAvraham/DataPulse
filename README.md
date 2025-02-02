@@ -97,6 +97,10 @@ Switch to the `tracker` branch:
 ```sh
 git checkout tracker
 ```
+Install dependencies:
+```sh
+pip install -r requirements.txt
+```
 Run the tracker using FastAPI:
 ```sh
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
@@ -107,6 +111,10 @@ This starts the Tracker API on **port 8000**.
 Switch to the `client-backend` branch:
 ```sh
 git checkout client-backend
+```
+Install dependencies:
+```sh
+pip install -r requirements.txt
 ```
 Run the backend that communicates with both the UI and the Tracker:
 ```sh
