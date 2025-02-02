@@ -5,12 +5,10 @@ import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService{
-
+export class AuthService {
   isAuthenticatedSignal = signal(false);
   private apiUrl = 'http://127.0.0.1:8001';
-  private http = inject(HttpClient)
-
+  private http = inject(HttpClient);
 
   // isAuthenticated() {
   //   return this.isAuthenticatedSignal.asReadonly();
@@ -28,11 +26,7 @@ export class AuthService{
 
   register(email: string, password: string): Observable<any> {
     const url = `${this.apiUrl}/register`;
-    return this.http.post(url, { email, password }).pipe(
-      tap(() => {
-        this.isAuthenticatedSignal.set(true);
-      })
-    );
+    return this.http.post(url, { email, password }).pipe();
   }
 
   logout(): Observable<any> {
