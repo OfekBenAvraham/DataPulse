@@ -54,27 +54,27 @@ export class OffersComponent {
 
   // Handle file upload
   uploadFile() {
-    // const filePath = this.filePath();
+    const filePath = this.filePath();
 
-    // if (!filePath) {
-    //   this.toastr.error('Please enter a valid file path');
-    //   return;
-    // }
+    if (!filePath) {
+      this.toastr.error('Please enter a valid file path');
+      return;
+    }
 
-    // const payload = { file_path: filePath };
+    const payload = { file_path: filePath };
 
-    // this.toastr.info('Uploading file...');
-    // this.fileService.upload_file(payload).subscribe({
-    //   next: () => {
-    //     this.toastr.success('File uploaded successfully');
-    //     this.uploadDialogVisible.set(false); // Close the dialog
-    //     this.filePath.set(''); // Reset the input field
-    //   },
-    //   error: (err) => {
-    //     this.toastr.error('Error during file upload');
-    //     console.error('Upload failed:', err);
-    //   },
-    // });
+    this.toastr.info('Uploading file...');
+    this.fileService.upload_file(payload).subscribe({
+      next: () => {
+        this.toastr.success('File uploaded successfully');
+        this.uploadDialogVisible.set(false); // Close the dialog
+        this.filePath.set(''); // Reset the input field
+      },
+      error: (err) => {
+        this.toastr.error('Error during file upload');
+        console.error('Upload failed:', err);
+      },
+    });
   }
 
   // Handle torrent download
