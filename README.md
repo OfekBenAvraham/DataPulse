@@ -2,6 +2,8 @@
 
 ![Project Logo](./assets/logo.png)  
 _A next-gen distributed file-sharing platform powered by hybrid P2P and tracker-based architecture._
+For a detailed walkthrough of the system, check out our tutorial video on YouTube:
+https://youtu.be/CLtBPpgitAw
 
 ## 📌 Overview
 DataPulse enables users to efficiently share and download files using a hybrid **peer-to-peer (P2P) and tracker-based architecture**. 
