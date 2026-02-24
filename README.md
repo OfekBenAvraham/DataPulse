@@ -150,5 +150,5 @@ We welcome contributions! Feel free to fork the project, submit pull requests, a
 
 ---
 
-📧 For questions or collaboration, reach out to [Ofek Ben Avraham](mailto:benavrahamofek@gmail.com) or to [Rotem Porat](mailto:rotem1591@gmail.com).
+📧 For questions or collaboration, reach out to [Ofek Ben Avraham](mailto:benavrahamofek@gmail.com) 
 
